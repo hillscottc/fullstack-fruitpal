@@ -1,0 +1,17 @@
+{
+  "name": "express-vinyl",
+  "version": "1.0.0",
+  "description": "node express backend for vinyl album app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "pg": "^7.18.2"
+  }
+}
