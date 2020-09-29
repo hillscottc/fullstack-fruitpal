@@ -2,6 +2,17 @@
 
 demo app with express+postgres server and react client
 
+## Clone this repo and install
+
+```bash
+git clone https://github.com/hillscottc/fullstack-fruitpal
+cd fullstack-fruitpal
+npm install
+```
+
+(If you get errors running npm i at the top level, try running `npm i` in `fullstack-fruitpal/client` and then run `npm i` in `fullstack-fruitpal/server`.
+This was a little bumpy on my old linux box.)
+
 ## Create Postgres database
 
 - Create fruitpal db and fruitpal user
@@ -48,3 +59,13 @@ SELECT (SELECT ctry_code FROM countries WHERE country = data->>'country'),
 (SELECT commodity_id FROM commodities WHERE commodity = data->>'commodity'),
 (data->>'fixed_overhead')::real, (data->>'variable_cost')::real FROM temp"
 ```
+
+## Run the app
+
+From the `fullstack-fruitpal/` directory:
+
+```bash
+npm start
+```
+
+App will be running at <http://localhost:3000/>
