@@ -65,11 +65,9 @@ function App() {
   return (
     <main className="App">
       <h1>
-        <img className="fruits-img" src={fruits} />
+        <img alt="fruit logo" className="fruits-img" src={fruits} />
         FruitPal
       </h1>
-
-      {/* <div>Try: COMMODITY = "mango" , PRICE = 53 , and TONS = 405</div> */}
 
       <form onSubmit={handleSubmit}>
         <div className="search-param">

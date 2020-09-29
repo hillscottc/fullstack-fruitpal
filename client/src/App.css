@@ -23,7 +23,9 @@ body {
 
 .price-list__header__item {
   padding-right: 10px;
-  width: 100px;
+  padding-left: 10px;
+  width: 110px;
+  font-weight: bold;
 }
 
 .price-list__row {
@@ -32,9 +34,10 @@ body {
 
 .price-list__row__item {
   padding-right: 10px;
-  width: 100px;
+  width: 110px;
   margin-top: 10px;
   margin-bottom: 10px;
+  text-align: right;
 }
 
 .flag {

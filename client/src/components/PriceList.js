@@ -8,12 +8,12 @@ import venezuela from "../images/venezuela.jpg";
 
 function QueryResult(queryResult) {
   const flagMap = {
-    MX: <img className="flag" src={mexico} />,
-    BR: <img className="flag" src={brazil} />,
-    CH: <img className="flag" src={chile} />,
-    AR: <img className="flag" src={argentina} />,
-    CL: <img className="flag" src={columbia} />,
-    VZ: <img className="flag" src={venezuela} />,
+    MX: <img alt="flag" className="flag" src={mexico} />,
+    BR: <img alt="flag" className="flag" src={brazil} />,
+    CH: <img alt="flag" className="flag" src={chile} />,
+    AR: <img alt="flag" className="flag" src={argentina} />,
+    CL: <img alt="flag" className="flag" src={columbia} />,
+    VZ: <img alt="flag" className="flag" src={venezuela} />,
   };
 
   const {
@@ -31,8 +31,12 @@ function QueryResult(queryResult) {
       <div className="price-list__row__item">
         {total_cost && total_cost.toFixed(2)}
       </div>
-      <div className="price-list__row__item">{fixed_cost}</div>
-      <div className="price-list__row__item">{variable_cost}</div>
+      <div className="price-list__row__item">
+        {fixed_cost && fixed_cost.toFixed(2)}
+      </div>
+      <div className="price-list__row__item">
+        {variable_cost && variable_cost.toFixed(2)}
+      </div>
     </div>
   );
 }
