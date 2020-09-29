@@ -1,5 +1,6 @@
 {
-  "name": "react-vinyl",
+  "name": "fruitpal_server",
+  "description": "node express server for fruitpal app",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

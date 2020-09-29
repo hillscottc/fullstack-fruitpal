@@ -1,7 +1,7 @@
 {
-  "name": "express-vinyl",
+  "name": "fruitpal_client",
   "version": "1.0.0",
-  "description": "node express backend for vinyl album app",
+  "description": "react client for fruitpal app",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
