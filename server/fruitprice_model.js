@@ -23,10 +23,11 @@ const getFruitPrices = () => {
 };
 
 const priceQuery = (commodity, price, tons) => {
-  console.log("API HANDLE QUERY:", { commodity, price, tons });
   return new Promise(function (resolve, reject) {
     pool.query(
-      "SELECT ctry_code, ($1 * ($2 + variable_cost)) + fixed_overhead as total_cost, $2 + variable_cost as variable_cost FROM fruitprices " +
+      "SELECT ctry_code, ($1 * ($2 + variable_cost)) + fixed_overhead AS total_cost, " +
+        "fixed_overhead as fixed_cost, " +
+        "$2 + variable_cost AS variable_cost FROM fruitprices " +
         "WHERE commodity_id = (SELECT commodity_id FROM commodities WHERE commodity = $3)",
       [tons, price, commodity],
       (error, results) => {

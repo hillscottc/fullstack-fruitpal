@@ -3,14 +3,28 @@ import "./App.css";
 
 const HOST_URL = "http://localhost:3001";
 
-// fetch(`${HOST_URL}/fruitprices`)
-//   .then((response) => response.text())
-//   .then((data) => console.log({ data }));
+function QueryResult(queryResult) {
+  const {
+    ctry_code,
+    total_cost,
+    fixed_cost,
+    variable_cost,
+  } = queryResult.queryResult;
+  return (
+    <div style={{ margin: "10px" }}>
+      <div>COUNTRY: {ctry_code}</div>
+      <div>TOTAL COST: {total_cost && total_cost.toFixed(2)}</div>
+      <div>FIXED COST: {fixed_cost}</div>
+      <div>VARIABLE COST: {variable_cost}</div>
+    </div>
+  );
+}
 
 function App() {
   const [commodity, setCommodity] = useState("");
   const [price, setPrice] = useState(0);
   const [tons, setTons] = useState(0);
+  const [priceQueryResults, setPriceQueryResults] = useState([]);
 
   const getPriceQuery = ({ commodity, price, tons }) => {
     const url = `${HOST_URL}/price_query?commodity=${commodity}&price=${price}&tons=${tons}`;
@@ -19,6 +33,7 @@ function App() {
       .then((response) => response.json())
       .then((data) => {
         console.log("GOT RESP:", data);
+        setPriceQueryResults(data);
       });
   };
 
@@ -37,6 +52,8 @@ function App() {
     <main className="App">
       <h1>FRUIT!</h1>
 
+      <div>Try: COMMODITY = "mango" , PRICE = 53 , and TONS = 405</div>
+
       <form onSubmit={handleSubmit}>
         <div className="search-param">
           <label htmlFor="commodity">Commodity: </label>
@@ -45,6 +62,7 @@ function App() {
             value={commodity}
             onChange={(e) => setCommodity(e.target.value)}
           >
+            <option value="">Choose...</option>
             <option value="mango">mango</option>
             <option value="pineapple">pineapple</option>
             <option value="bannana">bannana</option>
@@ -77,6 +95,12 @@ function App() {
           <input className="add-btn" type="submit" />
         </div>
       </form>
+
+      <div>
+        {priceQueryResults.map((queryResult, ndx) => {
+          return <QueryResult key={ndx} queryResult={queryResult} />;
+        })}
+      </div>
     </main>
   );
 }
