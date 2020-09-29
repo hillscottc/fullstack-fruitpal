@@ -19,8 +19,9 @@ This was a little bumpy on my old linux box.)
 
 ```bash
 psql -d postgres -U postgres -c "CREATE ROLE fruitpal WITH LOGIN PASSWORD 'fruitpal';
-ALTER ROLE fruitpal CREATEDB;
-CREATE DATABASE fruitpal WITH OWNER fruitpal;"
+ALTER ROLE fruitpal CREATEDB;"
+
+psql -d postgres -U postgres -c "CREATE DATABASE fruitpal WITH OWNER fruitpal;"
 ```
 
 - Restore the fruitpal db
