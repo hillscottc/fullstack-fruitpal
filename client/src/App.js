@@ -1,30 +1,18 @@
 import React, { useState } from "react";
+import PriceList from "./components/PriceList";
+import fruits from "./images/fruits.png";
 import "./App.css";
 
 const HOST_URL = "http://localhost:3001";
-
-function QueryResult(queryResult) {
-  const {
-    ctry_code,
-    total_cost,
-    fixed_cost,
-    variable_cost,
-  } = queryResult.queryResult;
-  return (
-    <div style={{ margin: "10px" }}>
-      <div>COUNTRY: {ctry_code}</div>
-      <div>TOTAL COST: {total_cost && total_cost.toFixed(2)}</div>
-      <div>FIXED COST: {fixed_cost}</div>
-      <div>VARIABLE COST: {variable_cost}</div>
-    </div>
-  );
-}
 
 function App() {
   const [commodity, setCommodity] = useState("");
   const [price, setPrice] = useState(0);
   const [tons, setTons] = useState(0);
   const [priceQueryResults, setPriceQueryResults] = useState([]);
+  const [validPrice, setValidPrice] = useState(true);
+  const [validTons, setValidTons] = useState(true);
+  const [validCommodity, setValidCommodity] = useState(true);
 
   const getPriceQuery = ({ commodity, price, tons }) => {
     const url = `${HOST_URL}/price_query?commodity=${commodity}&price=${price}&tons=${tons}`;
@@ -37,6 +25,31 @@ function App() {
       });
   };
 
+  const isNumeric = (val) => !(val === "" || isNaN(val));
+
+  const validate = () => {
+    if (!commodity) {
+      setValidCommodity(false);
+      return false;
+    } else {
+      setValidCommodity(true);
+    }
+
+    if (!isNumeric(price)) {
+      setValidPrice(false);
+      return false;
+    } else {
+      setValidPrice(true);
+    }
+    if (!isNumeric(tons)) {
+      setValidTons(false);
+      return false;
+    } else {
+      setValidTons(true);
+    }
+    return true;
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const data = {
@@ -44,15 +57,19 @@ function App() {
       price,
       tons,
     };
-    console.log("DATA:", data);
-    getPriceQuery(data);
+    if (validate()) {
+      getPriceQuery(data);
+    }
   };
 
   return (
     <main className="App">
-      <h1>FRUIT!</h1>
+      <h1>
+        <img className="fruits-img" src={fruits} />
+        FruitPal
+      </h1>
 
-      <div>Try: COMMODITY = "mango" , PRICE = 53 , and TONS = 405</div>
+      {/* <div>Try: COMMODITY = "mango" , PRICE = 53 , and TONS = 405</div> */}
 
       <form onSubmit={handleSubmit}>
         <div className="search-param">
@@ -69,6 +86,9 @@ function App() {
             <option value="orange">orange</option>
             <option value="grapefruit">grapefruit</option>
           </select>
+          {!validCommodity && (
+            <span className="validation-err">Choose a fruit</span>
+          )}
         </div>
         <div className="search-param">
           <label htmlFor="price">Price: </label>
@@ -79,6 +99,9 @@ function App() {
             value={price}
             onChange={(e) => setPrice(e.target.value)}
           />
+          {!validPrice && (
+            <span className="validation-err">Must be numeric</span>
+          )}
         </div>
         <div className="search-param">
           <label htmlFor="tons">Tons: </label>
@@ -89,18 +112,23 @@ function App() {
             value={tons}
             onChange={(e) => setTons(e.target.value)}
           />
+          {!validTons && (
+            <span className="validation-err">Must be numeric</span>
+          )}
         </div>
+        <aside className="search-param">
+          (The test values were: Commodity = mango , Price = 53 , and Tons =
+          405)
+        </aside>
         <br />
         <div>
           <input className="add-btn" type="submit" />
         </div>
       </form>
-
-      <div>
-        {priceQueryResults.map((queryResult, ndx) => {
-          return <QueryResult key={ndx} queryResult={queryResult} />;
-        })}
-      </div>
+      <br />
+      {priceQueryResults.length > 0 && (
+        <PriceList priceQueryResults={priceQueryResults} />
+      )}
     </main>
   );
 }

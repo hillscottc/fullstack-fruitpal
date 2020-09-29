@@ -107,6 +107,17 @@ ALTER TABLE public.fruitprices ALTER COLUMN fruitprice_id ADD GENERATED ALWAYS A
 
 
 --
+-- Name: temp; Type: TABLE; Schema: public; Owner: fruitpal
+--
+
+CREATE TABLE public.temp (
+    data jsonb
+);
+
+
+ALTER TABLE public.temp OWNER TO fruitpal;
+
+--
 -- Data for Name: commodities; Type: TABLE DATA; Schema: public; Owner: fruitpal
 --
 
@@ -138,15 +149,42 @@ BR	Brazil	2020-09-28 09:29:14.532288-07
 --
 
 COPY public.fruitprices (fruitprice_id, ctry_code, commodity_id, fixed_overhead, variable_cost, created_at) FROM stdin;
-12	MX	1	32	1.24	2020-09-28 23:59:16.631076-07
-13	BR	1	20	1.42	2020-09-28 23:59:16.631076-07
-14	MX	3	26.5	1.85	2020-09-28 23:59:16.631076-07
-15	BR	1	31.25	2.01	2020-09-28 23:59:16.631076-07
-16	BR	2	26.45	1.9	2020-09-28 23:59:16.631076-07
-17	BR	3	28.2	1.65	2020-09-28 23:59:16.631076-07
-18	VZ	1	26.75	2.1	2020-09-28 23:59:16.631076-07
-19	VZ	2	28.75	2.1	2020-09-28 23:59:16.631076-07
-20	VZ	3	27.1	1.9	2020-09-28 23:59:16.631076-07
+21	MX	1	32	1.24	2020-09-29 10:46:51.787324-07
+22	MX	3	26.5	1.85	2020-09-29 10:46:51.787324-07
+23	BR	1	20	1.42	2020-09-29 10:46:51.787324-07
+24	BR	3	28.2	1.65	2020-09-29 10:46:51.787324-07
+25	CH	1	31.25	2.01	2020-09-29 10:46:51.787324-07
+26	CH	5	30.15	2.09	2020-09-29 10:46:51.787324-07
+27	CL	2	26.45	1.9	2020-09-29 10:46:51.787324-07
+28	CL	5	26.45	1.9	2020-09-29 10:46:51.787324-07
+29	VZ	1	26.75	2.1	2020-09-29 10:46:51.787324-07
+30	VZ	4	28.16	2.1	2020-09-29 10:46:51.787324-07
+31	AR	3	27.1	1.9	2020-09-29 10:46:51.787324-07
+32	AR	4	24.1	1.9	2020-09-29 10:46:51.787324-07
+33	AR	5	22.1	1.9	2020-09-29 10:46:51.787324-07
+34	AR	2	18.1	2.3	2020-09-29 10:46:51.787324-07
+\.
+
+
+--
+-- Data for Name: temp; Type: TABLE DATA; Schema: public; Owner: fruitpal
+--
+
+COPY public.temp (data) FROM stdin;
+{"country": "Mexico", "commodity": "mango", "variable_cost": 1.24, "fixed_overhead": 32}
+{"country": "Mexico", "commodity": "bannana", "variable_cost": 1.85, "fixed_overhead": 26.5}
+{"country": "Brazil", "commodity": "mango", "variable_cost": 1.42, "fixed_overhead": 20}
+{"country": "Brazil", "commodity": "bannana", "variable_cost": 1.65, "fixed_overhead": 28.2}
+{"country": "Chile", "commodity": "mango", "variable_cost": 2.01, "fixed_overhead": 31.25}
+{"country": "Chile", "commodity": "grapefruit", "variable_cost": 2.09, "fixed_overhead": 30.15}
+{"country": "Columbia", "commodity": "pineapple", "variable_cost": 1.9, "fixed_overhead": 26.45}
+{"country": "Columbia", "commodity": "grapefruit", "variable_cost": 1.9, "fixed_overhead": 26.45}
+{"country": "Venezuela", "commodity": "mango", "variable_cost": 2.1, "fixed_overhead": 26.75}
+{"country": "Venezuela", "commodity": "orange", "variable_cost": 2.1, "fixed_overhead": 28.16}
+{"country": "Argentina", "commodity": "bannana", "variable_cost": 1.9, "fixed_overhead": 27.1}
+{"country": "Argentina", "commodity": "orange", "variable_cost": 1.9, "fixed_overhead": 24.1}
+{"country": "Argentina", "commodity": "grapefruit", "variable_cost": 1.9, "fixed_overhead": 22.1}
+{"country": "Argentina", "commodity": "pineapple", "variable_cost": 2.3, "fixed_overhead": 18.1}
 \.
 
 
@@ -161,7 +199,7 @@ SELECT pg_catalog.setval('public.commodities_commodity_id_seq', 5, true);
 -- Name: fruitprices_fruitprice_id_seq; Type: SEQUENCE SET; Schema: public; Owner: fruitpal
 --
 
-SELECT pg_catalog.setval('public.fruitprices_fruitprice_id_seq', 20, true);
+SELECT pg_catalog.setval('public.fruitprices_fruitprice_id_seq', 34, true);
 
 
 --

@@ -42,7 +42,7 @@ psql fruitpal -U fruitpal -c "truncate TABLE fruitprices;"
 - Create a json temp table
 
 ```bash
-psql fruitpal -U fruitpal -c "CREATE TABLE temp (data jsonb);"
+psql fruitpal -U fruitpal -c "DROP TABLE IF EXISTS temp;CREATE TABLE temp (data jsonb);"
 ```
 
 - Copy json file data to temp json table
