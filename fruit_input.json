@@ -1,0 +1,9 @@
+{"country":"Mexico","commodity":"mango","fixed_overhead":32,"variable_cost":1.24}
+{"country":"Brazil","commodity":"mango","fixed_overhead":20,"variable_cost":1.42}
+{"country":"Mexico","commodity":"bannana","fixed_overhead":26.5,"variable_cost":1.85}
+{"country":"Brazil","commodity":"mango","fixed_overhead":31.25,"variable_cost":2.01}
+{"country":"Brazil","commodity":"pineapple","fixed_overhead":26.45,"variable_cost":1.9}
+{"country":"Brazil","commodity":"bannana","fixed_overhead":28.2,"variable_cost":1.65}
+{"country":"Venezuela","commodity":"mango","fixed_overhead":26.75,"variable_cost":2.1}
+{"country":"Venezuela","commodity":"pineapple","fixed_overhead":28.75,"variable_cost":2.1}
+{"country":"Venezuela","commodity":"bannana","fixed_overhead":27.1,"variable_cost":1.9}

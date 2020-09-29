@@ -42,43 +42,6 @@ app.get("/price_query", (req, res) => {
     });
 });
 
-// // Return all albums
-// app.get("/", (req, res) => {
-//   album_model
-//     .getAlbums()
-//     .then((response) => {
-//       res.status(200).send(response);
-//     })
-//     .catch((error) => {
-//       res.status(500).send(error);
-//     });
-// });
-
-// // Return albums, can search LIKE artist
-// // /albums OR /albums?artist=foo
-// app.get("/albums", (req, res) => {
-//   const { artist } = req.query;
-//   if (artist) {
-//     album_model
-//       .findAlbumsByArtist(artist)
-//       .then((response) => {
-//         res.status(200).send(response);
-//       })
-//       .catch((error) => {
-//         res.status(500).send(error);
-//       });
-//   } else {
-//     album_model
-//       .getAlbums()
-//       .then((response) => {
-//         res.status(200).send(response);
-//       })
-//       .catch((error) => {
-//         res.status(500).send(error);
-//       });
-//   }
-// });
-
 app.listen(port, () => {
   console.log(`App running on port ${port}.`);
 });
